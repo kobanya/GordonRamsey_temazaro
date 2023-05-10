@@ -1,6 +1,6 @@
 #Nagy Béla 2023-05-15   Témazáró vizsga feladat
 
-#1.Olvassa be egy alkalmas adatszerkezetbe az állomány tartalmát!
+# 1.Olvassa be egy alkalmas adatszerkezetbe az állomány tartalmát!
 
 with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
     lines = f.readlines()   # sorok beolvasása
