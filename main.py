@@ -10,13 +10,16 @@ with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
 # 2.Jelezze ki, összesen hány étteremmel került GR kapcsolatba!
 print(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.') # egy behúzással kiírva a minta serint
 
-#3.Írja ki a jelenleg is működő éttermek számát!
-aktualis_ev = 2023                                        # az aktuális év
-muvekodo_ettermek_szama = 0                               # változó létrehozása
+# 3.Írja ki a jelenleg is működő éttermek számát!
+aktualis_ev = 2023                                                                # az aktuális év
+muvekodo_ettermek_szama = 0                                                       # változó létrehozása
 
-for sor in sorok[1:]:                                     # A fejléc sort kihagyjuk
-    if sor[4] == '0' or int(sor[4]) > aktualis_ev:        # Nem zárt be, vagy az aktuális év után zárt be
-        muvekodo_ettermek_szama += 1                      # a számláló megnövelése egyel
+for sor in sorok[1:]:                                                             # A fejléc sort kihagyjuk
+    if sor[4] == '0' or int(sor[4]) > aktualis_ev:                                # Nem zárt be, vagy az aktuális év után zárt be
+        muvekodo_ettermek_szama += 1                                              # a számláló megnövelése egyel
 print(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.")
 
-# Számolja ki, hány százalékuk zárt be az adatfelvétel időpontjáig!
+# 4. Számolja ki, hány százalékuk zárt be az adatfelvétel időpontjáig!
+osszes_ettermek_szama = len(sorok)-1                                                            # A fejléc sort kihagyjuk
+zaras_arany = (osszes_ettermek_szama - muvekodo_ettermek_szama) / osszes_ettermek_szama * 100   # Az arány kiszámítása
+print(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be")
