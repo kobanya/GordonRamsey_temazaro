@@ -23,3 +23,10 @@ print(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.")
 osszes_ettermek_szama = len(sorok)-1                                                            # A fejléc sort kihagyjuk
 zaras_arany = (osszes_ettermek_szama - muvekodo_ettermek_szama) / osszes_ettermek_szama * 100   # Az arány kiszámítása
 print(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be")
+
+# 5.
+print(f"5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek::")
+for sor in sorok:
+    if int(sor[5]) > 0:                                                             # Ha legalább egy Michelin-csillaguk van
+        print(f"{sor[0]:40.40} \t {sor[1]}")                                        # 40 karakter fenntartott hely
+
