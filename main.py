@@ -26,7 +26,7 @@ zaras_arany = (osszes_ettermek_szama - muvekodo_ettermek_szama) / osszes_etterme
 print(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be")
 
 # 5.Írja ki azokat az éttermeket és városaikat, amelyek kaptak már Michelin-csillagot!
-print(f"5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek::")
+print(f"5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:")
 for sor in sorok:
     if int(sor[5]) > 0:                                                             # Ha legalább egy Michelin-csillaguk van
         print(f"\t\t{sor[0]:40.40} \t {sor[1]}")                                        # 40 karakter fenntartott hely
@@ -74,8 +74,9 @@ orszagok_lista = list(orszagok)  # listává alakítjuk
 abc = magyar.abc(orszagok_lista)  # a magyar modul használata ÍRORSZÁG jó helyre helyezésére
 
 print("8. feladat: \tGordon Ramsey a következő országokban nyitott éttermeket:")
-print(f'\t\t{magyar.tordel(abc, 5)}')  # Szöveg tordeléseés kiírása
-#9.
+magyar.tordel(abc, 5)  # Szöveg tordeléseés kiírása
+
+#9.Volt-e újranyitott étterem ugyanabban a városban? Mikor és hol?
 
 ujranyitott_ettermek = []  # Üres lista az újranyitott éttermek tárolására
 
@@ -99,3 +100,21 @@ if ujranyitott_ettermek:
         print(f'\t\t A {etterem} étterem  {varos} városában {nyitas}. és {nyitas_ujra}. évben is megnyitott ')
 else:
     print("9. feladat: Nem voltak újranyitott éttermek ugyanabban a városban.")
+# 10 egy input használata és fájlba mentés:
+
+def mentes_fajlba():
+    with open('adatok.txt', 'w', encoding='utf-8') as f:
+        f.write(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)\n") # 1. feladat mentése
+        f.write(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.\n') # 2. feladat mentése
+        f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n") # 3. feladat metése
+        f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")
+
+
+print('--------------------------------------------------------------------------')
+mentes = int(input("Szeretné fájlba menteni az adatokat? 1-igen, 2-nem: "))
+
+if mentes == 2:
+    print('Mentés nélkül kilépek.')
+
+elif mentes == 1:
+    mentes_fajlba()
