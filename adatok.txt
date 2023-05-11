@@ -1,0 +1,4 @@
+1. feladat : Beolvasás ... készen van! (45 rekord)
+2. feladat: 	Gordon Ramsey 45 étteremmel került kapcolatba.
+3. feladat: 	Jelenleg  24 étterem működik.
+4. feladat: 	Az éttermek 45 %-a zárt be

@@ -120,3 +120,4 @@ if mentes == 2:
 
 elif mentes == 1:
     mentes_fajlba()
+    print('Az adatokat elmentettem! Nyissza meg az adatok.txt fájlt')
