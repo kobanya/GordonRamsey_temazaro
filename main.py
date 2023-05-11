@@ -1,6 +1,13 @@
 #Nagy Béla 2023-05-15   Témazáró vizsga feladat
 import magyar
 
+def mentes_fajlba():
+    with open('adatok.txt', 'w', encoding='utf-8') as f:
+        f.write(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)\n") # 1. feladat mentése
+        f.write(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.\n') # 2. feladat mentése
+        f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n") # 3. feladat metése
+        f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")
+
 # 1.Olvassa be egy alkalmas adatszerkezetbe az állomány tartalmát!
 with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
     lines = f.readlines()                                                       # sorok beolvasása
@@ -102,16 +109,11 @@ else:
     print("9. feladat: Nem voltak újranyitott éttermek ugyanabban a városban.")
 # 10 egy input használata és fájlba mentés:
 
-def mentes_fajlba():
-    with open('adatok.txt', 'w', encoding='utf-8') as f:
-        f.write(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)\n") # 1. feladat mentése
-        f.write(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.\n') # 2. feladat mentése
-        f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n") # 3. feladat metése
-        f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")
-
-
 print('--------------------------------------------------------------------------')
 mentes = int(input("Szeretné fájlba menteni az adatokat? 1-igen, 2-nem: "))
+
+while mentes <1 or mentes >2:
+    mentes = int(input("Szeretné fájlba menteni az adatokat? 1-igen, 2-nem: "))
 
 if mentes == 2:
     print('Mentés nélkül kilépek.')
