@@ -1,4 +1,5 @@
 #Nagy Béla 2023-05-15   Témazáró vizsga feladat
+import magyar
 
 # 1.Olvassa be egy alkalmas adatszerkezetbe az állomány tartalmát!
 with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
@@ -40,7 +41,7 @@ for sor in sorok:
         if len(legkevesbe_sikeresek) < 4:
             legkevesbe_sikeresek.append(sor)
         else:
-            legkevesbe_sikeresek.sort(key=lambda x: int(x[4])-int(x[3]))
+            legkevesbe_sikeresek.sort(key=lambda x: int(x[4])-int(x[3]))  # egy sor 4. indexű eleme
             if int(sor[4])-int(sor[3]) < int(legkevesbe_sikeresek[-1][4])-int(legkevesbe_sikeresek[-1][3]):
                 legkevesbe_sikeresek[-1] = sor
 
@@ -61,3 +62,16 @@ if legtobb_csillag_meg_mukodo is not None:
           f' {legtobb_csillag_meg_mukodo[3]}. évben nyitott már {legtobb_csillag_meg_mukodo[5]} csillaga van')
 else:
     print("Nincs adat a legtöbb csillaggal rendelkező és még működő étteremről 2023-ban.")
+#8. Sorolja fel névsorrendben, ismétlődés nélkül azokat az országokat, amelyekben működése alatt tevékenykedett a sztárszakács!
+
+orszagok = set()  # Üres halmaz létrehozása az országok tárolására
+
+for sor in sorok:
+    orszag = sor[2]  # Az ország adata az adott sorban a 2. indexen található
+    orszagok.add(orszag)  # Az ország hozzáadása a halmazhoz
+
+orszagok_lista = list(orszagok)  # listává alakítjuk
+abc = magyar.abc(orszagok_lista)  # a magyar modul használata ÍRORSZÁG jó helyre helyezésére
+
+print("8. feladat: \tGordon Ramsey a következő országokban nyitott éttermeket:")
+magyar.tordel(abc, 5)  # Szöveg tordelése
