@@ -32,8 +32,20 @@ for sor in sorok:
 
 
 # 6. Melyik éttermek voltak a legkevésbé sikeresek (nem kaptak csillagot és a legrövidebb ideig voltak nyitva)?
+print("6. feladat: \tLegkevésbé sikeres éttermek adatai:")
+legkevesbe_sikeresek = []
 
+for sor in sorok:
+    if int(sor[5]) == 0 and int(sor[4]) != 0:  # Ha nincs Michelin-csillaguk és van bezárás éve
+        if len(legkevesbe_sikeresek) < 4:
+            legkevesbe_sikeresek.append(sor)
+        else:
+            legkevesbe_sikeresek.sort(key=lambda x: int(x[4])-int(x[3]))
+            if int(sor[4])-int(sor[3]) < int(legkevesbe_sikeresek[-1][4])-int(legkevesbe_sikeresek[-1][3]):
+                legkevesbe_sikeresek[-1] = sor
 
+for sor in legkevesbe_sikeresek:
+    print(f'"{sor[0]}" {sor[1]} városában {sor[3]}-től {sor[4]}-ig volt nyitva.')
 
 # 7 .Melyikek a legjobb (a legtöbb csillaggal rendelkező) és még működő éttermek?
 print("7. feladat: \tA jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:")
@@ -45,6 +57,7 @@ for sor in sorok:
             legtobb_csillag_meg_mukodo = sor
 
 if legtobb_csillag_meg_mukodo is not None:
-    print(f'"{legtobb_csillag_meg_mukodo[0]}" , amely {legtobb_csillag_meg_mukodo[1]} városában {legtobb_csillag_meg_mukodo[3]}. évben nyitott már {legtobb_csillag_meg_mukodo[5]} csillaga van')
+    print(f'"{legtobb_csillag_meg_mukodo[0]}" , amely {legtobb_csillag_meg_mukodo[1]} városában'
+          f' {legtobb_csillag_meg_mukodo[3]}. évben nyitott már {legtobb_csillag_meg_mukodo[5]} csillaga van')
 else:
     print("Nincs adat a legtöbb csillaggal rendelkező és még működő étteremről 2023-ban.")
