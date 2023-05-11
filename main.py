@@ -30,36 +30,21 @@ for sor in sorok:
     if int(sor[5]) > 0:                                                             # Ha legalább egy Michelin-csillaguk van
         print(f"{sor[0]:40.40} \t {sor[1]}")                                        # 40 karakter fenntartott hely
 
+
 # 6. Melyik éttermek voltak a legkevésbé sikeresek (nem kaptak csillagot és a legrövidebb ideig voltak nyitva)?
 
-# Az év, amelytől kezdve a legrövidebb nyitvatartásra keresünk
-kezdeti_ev = 9999
-legrovidebb_ido = 99
-legrovidebb_ettermek = []   # Az étterem neve és a városa, ahol található
 
-# Végigmegyünk az éttermeken
-for sor in sorok[1:]:
-    nev, varos, orszag, nyitas, bezaras, csillagok, csillag_kezdete, csillag_vege = sor
 
-    if csillagok == '0':                                             # Ha az étterem nem kapott csillagot
-        nyitvatartasi_ido = 0
+# 7 .Melyikek a legjobb (a legtöbb csillaggal rendelkező) és még működő éttermek?
+print("7. feladat: \tA jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:")
+legtobb_csillag_meg_mukodo = None  # változó a legtöbb csillaggal rendelkező és még működő étterem adatainak tárolására
 
-        if bezaras == '0':                                           # Ha az étterem még mindig működik
-            nyitvatartasi_ido = aktualis_ev - int(nyitas)
+for sor in sorok:
+    if int(sor[5]) > 0 and int(sor[4]) == 0:  # Ha legalább egy Michelin-csillagja van és a bezárás éve 0
+        if legtobb_csillag_meg_mukodo is None or int(sor[5]) > int(legtobb_csillag_meg_mukodo[5]):
+            legtobb_csillag_meg_mukodo = sor
 
-        else:                                                       # Ha már bezárt
-            nyitvatartasi_ido = int(bezaras) - int(nyitas)
-
-        # Ha ez az étterem nyitvatartása a legrövidebb eddig
-        if nyitvatartasi_ido < legrovidebb_ido:
-            legrovidebb_ido = nyitvatartasi_ido
-            legrovidebb_ettermek = [(nev, varos)]
-        # Ha van már legalább egy másik étterem ugyanolyan rövid nyitvatartással
-        elif nyitvatartasi_ido == legrovidebb_ido:
-            legrovidebb_ettermek.append((nev, varos))
-
-# Kiírjuk az eredményt
-print(f"6. feladat: \tA legkevésbé sikeres éttermek adatai:")
-for nev, varos in legrovidebb_ettermek:
-    print(f'{nev} {varos} városában,{nyitas}-től {bezaras}-ig volt nyitva.')
-
+if legtobb_csillag_meg_mukodo is not None:
+    print(f'"{legtobb_csillag_meg_mukodo[0]}" , amely {legtobb_csillag_meg_mukodo[1]} városában {legtobb_csillag_meg_mukodo[3]}. évben nyitott már {legtobb_csillag_meg_mukodo[5]} csillaga van')
+else:
+    print("Nincs adat a legtöbb csillaggal rendelkező és még működő étteremről 2023-ban.")
