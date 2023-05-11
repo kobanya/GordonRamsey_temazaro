@@ -29,7 +29,7 @@ print(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be")
 print(f"5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek::")
 for sor in sorok:
     if int(sor[5]) > 0:                                                             # Ha legalább egy Michelin-csillaguk van
-        print(f"{sor[0]:40.40} \t {sor[1]}")                                        # 40 karakter fenntartott hely
+        print(f"\t\t{sor[0]:40.40} \t {sor[1]}")                                        # 40 karakter fenntartott hely
 
 
 # 6. Melyik éttermek voltak a legkevésbé sikeresek (nem kaptak csillagot és a legrövidebb ideig voltak nyitva)?
@@ -46,7 +46,7 @@ for sor in sorok:
                 legkevesbe_sikeresek[-1] = sor
 
 for sor in legkevesbe_sikeresek:
-    print(f'"{sor[0]}" {sor[1]} városában {sor[3]}-től {sor[4]}-ig volt nyitva.')
+    print(f'\t\t"{sor[0]}" {sor[1]} városában {sor[3]}-től {sor[4]}-ig volt nyitva.')
 
 # 7 .Melyikek a legjobb (a legtöbb csillaggal rendelkező) és még működő éttermek?
 print("7. feladat: \tA jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:")
@@ -58,7 +58,7 @@ for sor in sorok:
             legtobb_csillag_meg_mukodo = sor
 
 if legtobb_csillag_meg_mukodo is not None:
-    print(f'"{legtobb_csillag_meg_mukodo[0]}" , amely {legtobb_csillag_meg_mukodo[1]} városában'
+    print(f'\t\t"{legtobb_csillag_meg_mukodo[0]}" , amely {legtobb_csillag_meg_mukodo[1]} városában'
           f' {legtobb_csillag_meg_mukodo[3]}. évben nyitott már {legtobb_csillag_meg_mukodo[5]} csillaga van')
 else:
     print("Nincs adat a legtöbb csillaggal rendelkező és még működő étteremről 2023-ban.")
@@ -74,4 +74,28 @@ orszagok_lista = list(orszagok)  # listává alakítjuk
 abc = magyar.abc(orszagok_lista)  # a magyar modul használata ÍRORSZÁG jó helyre helyezésére
 
 print("8. feladat: \tGordon Ramsey a következő országokban nyitott éttermeket:")
-magyar.tordel(abc, 5)  # Szöveg tordelése
+print(f'\t\t{magyar.tordel(abc, 5)}')  # Szöveg tordeléseés kiírása
+#9.
+
+ujranyitott_ettermek = []  # Üres lista az újranyitott éttermek tárolására
+
+for i in range(1, len(sorok)):
+    etterem = sorok[i][0]  # Az étterem neve az adott sorban az 1. indexen található
+    varos = sorok[i][1]  # A város neve az adott sorban a 2. indexen található
+    orszag = sorok[i][2]  # Az ország neve az adott sorban a 3. indexen található
+    nyitas = sorok[i][3]  # Az étterem nyitásának éve az adott sorban a 4. indexen található
+    zaras = sorok[i][4]  # Az étterem bezárásának éve az adott sorban a 5. indexen található
+
+    for j in range(i+1, len(sorok)):
+        if sorok[j][0] == etterem and sorok[j][1] == varos and sorok[j][2] == orszag:
+            nyitas_ujra = sorok[j][3]  # Az étterem újranyitásának éve
+            if nyitas_ujra != zaras:
+                ujranyitott_ettermek.append((etterem, varos, orszag, nyitas_ujra))
+
+# Kiírjuk az újranyitott éttermek adatait
+if ujranyitott_ettermek:
+    print("9. feladat: \t Úranyitott étterem :")
+    for etterem, varos, orszag, nyitas_ujra in ujranyitott_ettermek:
+        print(f'\t\t A {etterem} étterem  {varos} városában {nyitas}. és {nyitas_ujra}. évben is megnyitott ')
+else:
+    print("9. feladat: Nem voltak újranyitott éttermek ugyanabban a városban.")
