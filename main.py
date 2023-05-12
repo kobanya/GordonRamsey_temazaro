@@ -1,5 +1,7 @@
 #Nagy Béla 2023-05-15   Témazáró vizsga feladat
 import magyar
+from teszt import tordel
+
 
 def mentes_fajlba():
     with open('adatok.txt', 'w', encoding='utf-8') as f:
@@ -14,8 +16,9 @@ def mentes_fajlba():
         f.write("6. feladat: \tLegkevésbé sikeres éttermek adatai:\n")                        # 6. feladat mentése
         f.write('\n'.join(eredmeny))
         f.write("\n7. feladat: \tA jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:\n")
-        f.write('\n'.join(legjobb_ettermek_kimenet))                                           # 7. feladat mentése
-
+        f.write('\n'.join(legjobb_ettermek_kimenet))
+        f.write("\n8. feladat: \tGordon Ramsey a következő országokban nyitott éttermeket:\n")  # 8. feladat mentése
+        f.write(formazott)
 
 # 1.Olvassa be egy alkalmas adatszerkezetbe az állomány tartalmát!
 with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
@@ -63,9 +66,8 @@ for sor in sorok:
 
 eredmeny = [f'\t\t"{sor[0]}" {sor[1]} városában {sor[3]}-től {sor[4]}-ig volt nyitva.' for sor in legkevesbe_sikeresek]
 print('\n'.join(eredmeny))
-#for sor in legkevesbe_sikeresek:
-  #  print(f'\t\t"{sor[0]}" {sor[1]} városában {sor[3]}-től {sor[4]}-ig volt nyitva.')
 
+# 7. legjobb étterem
 def legjobb_ettermek():
     legjobb_ettermek_kimenet = []
     legtobb_csillag_meg_mukodo = None  # változó a legtöbb csillaggal rendelkező és még működő étterem adatainak tárolására
@@ -84,14 +86,11 @@ def legjobb_ettermek():
     return legjobb_ettermek_kimenet
 
 
-# Feladat kiíratása a képernyőre
+# a 7. Feladat kiíratása a képernyőre
 print("7. feladat: \tA jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:")
 legjobb_ettermek_kimenet = legjobb_ettermek()
 for sor in legjobb_ettermek_kimenet:
     print(sor)
-
-
-
 
 
 #8. Sorolja fel névsorrendben, ismétlődés nélkül azokat az országokat, amelyekben működése alatt tevékenykedett a sztárszakács!
@@ -105,8 +104,8 @@ orszagok_lista = list(orszagok)  # listává alakítjuk
 abc = magyar.abc(orszagok_lista)  # a magyar modul használata ÍRORSZÁG jó helyre helyezésére
 
 print("8. feladat: \tGordon Ramsey a következő országokban nyitott éttermeket:")
-magyar.tordel(abc, 5)  # Szöveg tordeléseés kiírása
-
+formazott=magyar.ftordel(abc, 5,'\t\t')  # Szöveg tordeléseés kiírása
+print(formazott)
 #9.Volt-e újranyitott étterem ugyanabban a városban? Mikor és hol?
 
 ujranyitott_ettermek = []  # Üres lista az újranyitott éttermek tárolására
