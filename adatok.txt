@@ -2,7 +2,8 @@
 2. feladat: 	Gordon Ramsey 45 étteremmel került kapcolatba.
 3. feladat: 	Jelenleg  24 étterem működik.
 4. feladat: 	Az éttermek 45 %-a zárt be
-5. feladat: 	Michlein-csillagot már kaptak az alábbi éttermek:		Gordon Ramsay at The London              	 New York City
+5. feladat: 	Michlein-csillagot már kaptak az alábbi éttermek:
+		Gordon Ramsay at The London              	 New York City
 		Gordon Ramsay at The London              	 West Hollywood
 		Aubergine                                	 London
 		Gordon Ramsay at Claridge's              	 London
@@ -29,3 +30,5 @@
 		Ausztrália, Cseh Köztársaság, Dél-Afrika, Egyesült Arab Emírségek, Egyesült Államok
 		Egyesült Királyság, Franciaország, Írország, Japán, Katar
 		Olaszország
+9. feladat: 	Újranyitott éttermek:
+		A Pétrus étterem London városában 1999. és 2010. évben is megnyitott

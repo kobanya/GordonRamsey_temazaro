@@ -1,7 +1,5 @@
 #Nagy Béla 2023-05-15   Témazáró vizsga feladat
 import magyar
-from teszt import tordel
-
 
 def mentes_fajlba():
     with open('adatok.txt', 'w', encoding='utf-8') as f:
@@ -9,7 +7,7 @@ def mentes_fajlba():
         f.write(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.\n') # 2. feladat mentése
         f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n")     # 3. feladat metése
         f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")                # 4. feladat mentése
-        f.write("5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:")           # 5. feladat mentése
+        f.write("5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:\n")         # 5. feladat mentése
         for sor in sorok:
             if int(sor[5]) > 0:
                 f.write(f"\t\t{sor[0]:40.40} \t {sor[1]}\n")
@@ -19,6 +17,10 @@ def mentes_fajlba():
         f.write('\n'.join(legjobb_ettermek_kimenet))
         f.write("\n8. feladat: \tGordon Ramsey a következő országokban nyitott éttermeket:\n")  # 8. feladat mentése
         f.write(formazott)
+        f.write("\n9. feladat: \tÚjranyitott éttermek:\n")
+        f.write('\n'.join(ujranyitott_ettermek_kimenet))
+
+
 
 # 1.Olvassa be egy alkalmas adatszerkezetbe az állomány tartalmát!
 with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
@@ -107,29 +109,44 @@ print("8. feladat: \tGordon Ramsey a következő országokban nyitott éttermeke
 formazott=magyar.ftordel(abc, 5,'\t\t')  # Szöveg tordeléseés kiírása
 print(formazott)
 #9.Volt-e újranyitott étterem ugyanabban a városban? Mikor és hol?
+def ujranyitott_ettermek():
+    ujranyitott_ettermek = []  # Üres lista az újranyitott éttermek tárolására
 
-ujranyitott_ettermek = []  # Üres lista az újranyitott éttermek tárolására
+    for i in range(1, len(sorok)):
+        etterem = sorok[i][0]  # Az étterem neve az adott sorban az 1. indexen található
+        varos = sorok[i][1]  # A város neve az adott sorban a 2. indexen található
+        orszag = sorok[i][2]  # Az ország neve az adott sorban a 3. indexen található
+        nyitas = sorok[i][3]  # Az étterem nyitásának éve az adott sorban a 4. indexen található
+        zaras = sorok[i][4]  # Az étterem bezárásának éve az adott sorban a 5. indexen található
 
-for i in range(1, len(sorok)):
-    etterem = sorok[i][0]  # Az étterem neve az adott sorban az 1. indexen található
-    varos = sorok[i][1]  # A város neve az adott sorban a 2. indexen található
-    orszag = sorok[i][2]  # Az ország neve az adott sorban a 3. indexen található
-    nyitas = sorok[i][3]  # Az étterem nyitásának éve az adott sorban a 4. indexen található
-    zaras = sorok[i][4]  # Az étterem bezárásának éve az adott sorban a 5. indexen található
+        for j in range(i + 1, len(sorok)):
+            if sorok[j][0] == etterem and sorok[j][1] == varos and sorok[j][2] == orszag:
+                nyitas_ujra = sorok[j][3]  # Az étterem újranyitásának éve
+                if nyitas_ujra != zaras:
+                    ujranyitott_ettermek.append((etterem, varos, orszag, nyitas, nyitas_ujra))
 
-    for j in range(i+1, len(sorok)):
-        if sorok[j][0] == etterem and sorok[j][1] == varos and sorok[j][2] == orszag:
-            nyitas_ujra = sorok[j][3]  # Az étterem újranyitásának éve
-            if nyitas_ujra != zaras:
-                ujranyitott_ettermek.append((etterem, varos, orszag, nyitas_ujra))
+    return ujranyitott_ettermek
 
-# Kiírjuk az újranyitott éttermek adatait
-if ujranyitott_ettermek:
-    print("9. feladat: \t Úranyitott étterem :")
-    for etterem, varos, orszag, nyitas_ujra in ujranyitott_ettermek:
-        print(f'\t\t A {etterem} étterem  {varos} városában {nyitas}. és {nyitas_ujra}. évben is megnyitott ')
-else:
-    print("9. feladat: Nem voltak újranyitott éttermek ugyanabban a városban.")
+
+# 9.Volt-e újranyitott étterem ugyanabban a városban? Mikor és hol?
+def ujranyitott_ettermek_kiiras():
+    ujranyitott_lista = ujranyitott_ettermek()
+
+    if ujranyitott_lista:
+        eredmeny = []
+        for etterem, varos, orszag, nyitas, nyitas_ujra in ujranyitott_lista:
+            eredmeny.append(
+                f'\t\tA {etterem} étterem {varos} városában {nyitas}. és {nyitas_ujra}. évben is megnyitott')
+        return eredmeny
+    else:
+        return ["9. feladat: Nem voltak újranyitott éttermek ugyanabban a városban."]
+
+
+# 9. feladat kiíratása a képernyőre
+ujranyitott_ettermek_kimenet = ujranyitott_ettermek_kiiras()
+print("9. feladat: \tÚjranyitott éttermek:")
+print('\n'.join(ujranyitott_ettermek_kimenet))
+
 # 10 egy input használata és fájlba mentés:
 
 print('--------------------------------------------------------------------------')
