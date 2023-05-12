@@ -1,8 +1,8 @@
 1. feladat : Beolvasás ... készen van! (45 rekord)
-2. feladat: 	Gordon Ramsey 45 étteremmel került kapcolatba.
-3. feladat: 	Jelenleg  24 étterem működik.
-4. feladat: 	Az éttermek 45 %-a zárt be
-5. feladat: 	Michlein-csillagot már kaptak az alábbi éttermek:
+2. feladat: 	Gordon Ramsey 45 étteremmel került kapcsolatba.
+3. feladat: 	Jelenleg 24 étterem működik.
+4. feladat: 	Az éttermek 46 %-a zárt be
+5. feladat: 	Michelin-csillagot már kaptak az alábbi éttermek:
 		Gordon Ramsay at The London              	 New York City
 		Gordon Ramsay at The London              	 West Hollywood
 		Aubergine                                	 London
