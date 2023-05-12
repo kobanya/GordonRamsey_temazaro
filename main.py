@@ -3,14 +3,16 @@ import magyar
 
 def mentes_fajlba():
     with open('adatok.txt', 'w', encoding='utf-8') as f:
-        f.write(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)\n") # 1. feladat mentése
+        f.write(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)\n")         # 1. feladat mentése
         f.write(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.\n') # 2. feladat mentése
-        f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n") # 3. feladat metése
-        f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")
-        f.write("5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:\n")
+        f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n")   # 3. feladat metése
+        f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")              # 4. feladat mentése
+        f.write("5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:")        # 5. feladat mentése
         for sor in sorok:
             if int(sor[5]) > 0:
-                f.write(f"\t{sor[0]:40.40} \t {sor[1]}\n")
+                f.write(f"\t\t{sor[0]:40.40} \t {sor[1]}\n")
+        f.write("6. feladat: \tLegkevésbé sikeres éttermek adatai:\n")                    #6. feladat kiírása
+        f.write('\n'.join(eredmeny))
 
 # 1.Olvassa be egy alkalmas adatszerkezetbe az állomány tartalmát!
 with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
@@ -56,8 +58,10 @@ for sor in sorok:
             if int(sor[4])-int(sor[3]) < int(legkevesbe_sikeresek[-1][4])-int(legkevesbe_sikeresek[-1][3]):
                 legkevesbe_sikeresek[-1] = sor
 
-for sor in legkevesbe_sikeresek:
-    print(f'\t\t"{sor[0]}" {sor[1]} városában {sor[3]}-től {sor[4]}-ig volt nyitva.')
+eredmeny = [f'\t\t"{sor[0]}" {sor[1]} városában {sor[3]}-től {sor[4]}-ig volt nyitva.' for sor in legkevesbe_sikeresek]
+print('\n'.join(eredmeny))
+#for sor in legkevesbe_sikeresek:
+  #  print(f'\t\t"{sor[0]}" {sor[1]} városában {sor[3]}-től {sor[4]}-ig volt nyitva.')
 
 # 7 .Melyikek a legjobb (a legtöbb csillaggal rendelkező) és még működő éttermek?
 print("7. feladat: \tA jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:")
