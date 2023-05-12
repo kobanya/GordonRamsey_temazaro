@@ -23,3 +23,5 @@
 		"Maze Grill" Melbourne városában 2010-től 2011-ig volt nyitva.
 		"Maze" Prága városában 2008-től 2009-ig volt nyitva.
 		"Maze" Cape Town városában 2009-től 2010-ig volt nyitva.
+7. feladat: 	A jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:
+		"Restaurant Gordon Ramsay" , amely London városában 1998. évben nyitott már 3 csillaga van

@@ -3,16 +3,19 @@ import magyar
 
 def mentes_fajlba():
     with open('adatok.txt', 'w', encoding='utf-8') as f:
-        f.write(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)\n")         # 1. feladat mentése
+        f.write(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)\n")           # 1. feladat mentése
         f.write(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.\n') # 2. feladat mentése
-        f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n")   # 3. feladat metése
-        f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")              # 4. feladat mentése
-        f.write("5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:")        # 5. feladat mentése
+        f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n")     # 3. feladat metése
+        f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")                # 4. feladat mentése
+        f.write("5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:")           # 5. feladat mentése
         for sor in sorok:
             if int(sor[5]) > 0:
                 f.write(f"\t\t{sor[0]:40.40} \t {sor[1]}\n")
-        f.write("6. feladat: \tLegkevésbé sikeres éttermek adatai:\n")                    #6. feladat kiírása
+        f.write("6. feladat: \tLegkevésbé sikeres éttermek adatai:\n")                        # 6. feladat mentése
         f.write('\n'.join(eredmeny))
+        f.write("\n7. feladat: \tA jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:\n")
+        f.write('\n'.join(legjobb_ettermek_kimenet))                                           # 7. feladat mentése
+
 
 # 1.Olvassa be egy alkalmas adatszerkezetbe az állomány tartalmát!
 with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
@@ -63,22 +66,35 @@ print('\n'.join(eredmeny))
 #for sor in legkevesbe_sikeresek:
   #  print(f'\t\t"{sor[0]}" {sor[1]} városában {sor[3]}-től {sor[4]}-ig volt nyitva.')
 
-# 7 .Melyikek a legjobb (a legtöbb csillaggal rendelkező) és még működő éttermek?
+def legjobb_ettermek():
+    legjobb_ettermek_kimenet = []
+    legtobb_csillag_meg_mukodo = None  # változó a legtöbb csillaggal rendelkező és még működő étterem adatainak tárolására
+
+    for sor in sorok:
+        if int(sor[5]) > 0 and int(sor[4]) == 0:  # Ha legalább egy Michelin-csillagja van és a bezárás éve 0
+            if legtobb_csillag_meg_mukodo is None or int(sor[5]) > int(legtobb_csillag_meg_mukodo[5]):
+                legtobb_csillag_meg_mukodo = sor
+
+    if legtobb_csillag_meg_mukodo is not None:
+        legjobb_ettermek_kimenet.append(f'\t\t"{legtobb_csillag_meg_mukodo[0]}" , amely {legtobb_csillag_meg_mukodo[1]} városában'
+                                       f' {legtobb_csillag_meg_mukodo[3]}. évben nyitott már {legtobb_csillag_meg_mukodo[5]} csillaga van')
+    else:
+        legjobb_ettermek_kimenet.append("Nincs adat a legtöbb csillaggal rendelkező és még működő étteremről 2023-ban.")
+
+    return legjobb_ettermek_kimenet
+
+
+# Feladat kiíratása a képernyőre
 print("7. feladat: \tA jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:")
-legtobb_csillag_meg_mukodo = None  # változó a legtöbb csillaggal rendelkező és még működő étterem adatainak tárolására
+legjobb_ettermek_kimenet = legjobb_ettermek()
+for sor in legjobb_ettermek_kimenet:
+    print(sor)
 
-for sor in sorok:
-    if int(sor[5]) > 0 and int(sor[4]) == 0:  # Ha legalább egy Michelin-csillagja van és a bezárás éve 0
-        if legtobb_csillag_meg_mukodo is None or int(sor[5]) > int(legtobb_csillag_meg_mukodo[5]):
-            legtobb_csillag_meg_mukodo = sor
 
-if legtobb_csillag_meg_mukodo is not None:
-    print(f'\t\t"{legtobb_csillag_meg_mukodo[0]}" , amely {legtobb_csillag_meg_mukodo[1]} városában'
-          f' {legtobb_csillag_meg_mukodo[3]}. évben nyitott már {legtobb_csillag_meg_mukodo[5]} csillaga van')
-else:
-    print("Nincs adat a legtöbb csillaggal rendelkező és még működő étteremről 2023-ban.")
+
+
+
 #8. Sorolja fel névsorrendben, ismétlődés nélkül azokat az országokat, amelyekben működése alatt tevékenykedett a sztárszakács!
-
 orszagok = set()  # Üres halmaz létrehozása az országok tárolására
 
 for sor in sorok:
