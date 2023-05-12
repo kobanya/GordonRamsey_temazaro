@@ -3,31 +3,30 @@ import magyar
 
 def mentes_fajlba():
     with open('adatok.txt', 'w', encoding='utf-8') as f:
-        f.write(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)\n")           # 1. feladat mentése
-        f.write(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.\n') # 2. feladat mentése
-        f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n")     # 3. feladat metése
-        f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")                # 4. feladat mentése
-        f.write("5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:\n")         # 5. feladat mentése
-        for sor in sorok:
-            if int(sor[5]) > 0:
-                f.write(f"\t\t{sor[0]:40.40} \t {sor[1]}\n")
-        f.write("6. feladat: \tLegkevésbé sikeres éttermek adatai:\n")                        # 6. feladat mentése
+        f.write(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)\n")             # 1. feladat mentése
+        f.write(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.\n')   # 2. feladat mentése
+        f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n")       # 3. feladat mentése
+        f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")                  # 4. feladat mentése
+        f.write("5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:\n")           # 5. feladat mentése
+        f.write('\n'.join([f"\t\t{sor[0]:40.40} \t {sor[1]}" for sor in sorok if int(sor[5]) > 0]))
+        f.write("6. feladat: \tLegkevésbé sikeres éttermek adatai:\n")                          # 6. feladat mentése
         f.write('\n'.join(eredmeny))
         f.write("\n7. feladat: \tA jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:\n")
-        f.write('\n'.join(legjobb_ettermek_kimenet))
+        f.write('\n'.join(legjobb_ettermek_kimenet))                                            # 7. feladat mentése
         f.write("\n8. feladat: \tGordon Ramsey a következő országokban nyitott éttermeket:\n")  # 8. feladat mentése
         f.write(formazott)
         f.write("\n9. feladat: \tÚjranyitott éttermek:\n")
         f.write('\n'.join(ujranyitott_ettermek_kimenet))
+        return
 
 
 
 # 1.Olvassa be egy alkalmas adatszerkezetbe az állomány tartalmát!
 with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
-    lines = f.readlines()                                                       # sorok beolvasása
-    fejlec = lines[0]                                                           # a fejléc listába mentése, ez nem feladat
-    sorok = [line.strip().split('\t') for line in lines[1:]]                    # A sorokat az 1-es indextől feldarabolom, tabulátorral
-    print(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)")      #kiírom a minta szerint, nincs behúzás
+    lines = f.readlines()                                                         # sorok beolvasása
+    fejlec = lines[0]                                                             # a fejléc listába mentése, ez nem feladat
+    sorok = [line.strip().split('\t') for line in lines[1:]]                      # A sorokat az 1-es indextől feldarabolom, tabulátorral
+    print(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)")        #kiírom a minta szerint, nincs behúzás
 
 # 2.Jelezze ki, összesen hány étteremmel került GR kapcsolatba!
 print(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.')  # egy behúzással kiírva a minta serint
@@ -49,8 +48,8 @@ print(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be")
 # 5.Írja ki azokat az éttermeket és városaikat, amelyek kaptak már Michelin-csillagot!
 print(f"5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:")
 for sor in sorok:
-    if int(sor[5]) > 0:                                                             # Ha legalább egy Michelin-csillaguk van
-        print(f"\t\t{sor[0]:40.40} \t {sor[1]}")                                        # 40 karakter fenntartott hely
+    if int(sor[5]) > 0:                                                 # Ha legalább egy Michelin-csillaguk van
+        print(f"\t\t{sor[0]:40.40} \t {sor[1]}")                        # 40 karakter fenntartott hely
 
 
 # 6. Melyik éttermek voltak a legkevésbé sikeresek (nem kaptak csillagot és a legrövidebb ideig voltak nyitva)?
