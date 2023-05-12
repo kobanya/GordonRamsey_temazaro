@@ -7,6 +7,10 @@ def mentes_fajlba():
         f.write(f'2. feladat: \tGordon Ramsey {len(sorok)} étteremmel került kapcolatba.\n') # 2. feladat mentése
         f.write(f"3. feladat: \tJelenleg  {muvekodo_ettermek_szama} étterem működik.\n") # 3. feladat metése
         f.write(f"4. feladat: \tAz éttermek {zaras_arany:.0f} %-a zárt be\n")
+        f.write("5. feladat: \tMichlein-csillagot már kaptak az alábbi éttermek:\n")
+        for sor in sorok:
+            if int(sor[5]) > 0:
+                f.write(f"\t{sor[0]:40.40} \t {sor[1]}\n")
 
 # 1.Olvassa be egy alkalmas adatszerkezetbe az állomány tartalmát!
 with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
