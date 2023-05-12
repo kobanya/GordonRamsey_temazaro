@@ -149,14 +149,14 @@ print('\n'.join(ujranyitott_ettermek_kimenet))
 # 10 egy input használata és fájlba mentés:
 
 print('--------------------------------------------------------------------------')
-mentes = int(input("Szeretné fájlba menteni az adatokat? 1-igen, 2-nem: "))
+mentes = input("Szeretné fájlba menteni az adatokat? 1-igen, 2-nem: ")
 
-while mentes <1 or mentes >2:
-    mentes = int(input("Szeretné fájlba menteni az adatokat? 1-igen, 2-nem: "))
+while mentes not in ["1", "2"]:
+    mentes = input("Szeretné fájlba menteni az adatokat? 1-igen, 2-nem: ")
 
-if mentes == 2:
+if mentes == "2":
     print('Mentés nélkül kilépek.')
 
-elif mentes == 1:
+elif mentes == "1":
     mentes_fajlba()
-    print('Az adatokat elmentettem! Nyissza meg az adatok.txt fájlt')
+    print('Az adatokat elmentettem! Nyissa meg az adatok.txt fájlt')
