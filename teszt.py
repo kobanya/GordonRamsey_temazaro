@@ -1,7 +1,19 @@
-def le_kerekit(szam):
-    return int(szam // 1)
+def random_elem(lista, n=1):
+    length = len(lista)
+    indices = set()
+    if n > length:
+        n = length
+    while len(indices) < n:
+        index = hash(tuple(indices)) % length
+        indices.add(index)
+    return [lista[index] for index in indices]
 
-eredmény= le_kerekit(0.9)
 
-print(eredmény)
+
+
+fruits = ["apple", "banana", "orange", "kiwi", "grape"]
+
+random_fruit = random_elem(fruits,4)
+print(random_fruit)  # Véletlenszerűen kiválasztott gyümölcs (pl.: "banana")
+
 

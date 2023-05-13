@@ -18,7 +18,7 @@ def mentes_fajlba():
         f.write(f"4. feladat: \tAz éttermek {kerekitett_arany:.0f} %-a zárt be\n")
         f.write("5. feladat: \tMichelin-csillagot már kaptak az alábbi éttermek:\n")
         f.write('\n'.join([f"\t\t{sor[0]:40.40} \t {sor[1]}" for sor in sorok if int(sor[5]) > 0]))
-        f.write("6. feladat: \tLegkevésbé sikeres éttermek adatai:\n")
+        f.write("\n6. feladat: \tLegkevésbé sikeres éttermek adatai:\n")
         f.write('\n'.join(eredmeny))
         f.write("\n7. feladat: \tA jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:\n")
         f.write('\n'.join(legjobb_ettermek_kimenet))
