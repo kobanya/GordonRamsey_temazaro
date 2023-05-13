@@ -1,7 +1,7 @@
 # Nagy Béla 2023-05-15   Témazáró vizsga feladat
 
-import magyar  # sortörés, abc-be rendezés, kerekítés
-def beolvasas():
+import magyar  # sortörés, ékezetes abc-be rendezés, kerekítés
+def beolvasas():  # a szükséges adatállomány beolvasása
     with open('GordonRamsayRestorants.csv', encoding='utf-8') as f:
         lines = f.readlines()  # sorok beolvasása
         fejlec = lines[0]  # a fejléc listába mentése, ez nem feladat
@@ -9,7 +9,7 @@ def beolvasas():
         print(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)")  # kiírom a minta szerint, nincs behúzás
         return sorok
 
-def mentes_fajlba():
+def mentes_fajlba():   # formázott fájlba mentée
 
     with open('adatok.txt', 'w', encoding='utf-8') as f:
         f.write(f"1. feladat : Beolvasás ... készen van! ({len(sorok)} rekord)\n")
@@ -28,7 +28,7 @@ def mentes_fajlba():
         f.write('\n'.join(ujranyitott_ettermek_kimenet))
         return
 
-def mentes_menu():
+def mentes_menu():  # a mentés menü  létrehozása, hibakezeléssel
     print('--------------------------------------------------------------------------')
     mentes = input("Szeretné fájlba menteni az adatokat? 1-igen, 2-nem: ")
 
