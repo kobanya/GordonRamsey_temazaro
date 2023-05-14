@@ -1,2 +1,0 @@
-7. feladat: 	A jelenleg is működő éttermek közül a legtöbb csillaga a következő(k)nek van:
-		"Restaurant Gordon Ramsay" , amely London városában 1998. évben nyitott már 3 csillaga van

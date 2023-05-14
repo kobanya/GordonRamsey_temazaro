@@ -23,3 +23,7 @@ Készítsen a következő elvárásoknak megfelelő számítógépes asztali alk
 7.Melyikek a legjobb (a legtöbb csillaggal rendelkező) és még működő éttermek?</br>
 8.Sorolja fel névsorrendben, ismétlődés nélkül azokat az országokat, amelyekben működése alatt tevékenykedett a sztárszakács!</br>
 9.Volt-e újranyitott étterem ugyanabban a városban? Mikor és hol?
+<br><br>
+Minta kimenet a konzolon :
+<br>
+![Példa kép](./konzol.jpg)

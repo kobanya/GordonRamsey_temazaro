@@ -167,6 +167,4 @@ ujranyitott_ettermek_kimenet = ujranyitott_ettermek_kiiras()
 print("9. feladat: \tÚjranyitott éttermek:")
 print('\n'.join(ujranyitott_ettermek_kimenet))
 
-
-
 mentes_menu()
